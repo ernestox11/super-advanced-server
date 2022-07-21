@@ -24,8 +24,9 @@ export class DestinationsService {
     return `This action returns all destinations`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} destination`;
+  findOne(id: string) {
+    return this.destinationsRepository.findOne({ id });
+    // return `This action returns a #${id} destination`;
   }
 
   update(id: number, updateDestinationDto: UpdateDestinationDto) {

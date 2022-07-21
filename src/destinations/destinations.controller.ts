@@ -30,7 +30,7 @@ export class DestinationsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.destinationsService.findOne(+id);
+    return this.destinationsService.findOne(id);
   }
 
   @Patch(':id')
