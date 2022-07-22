@@ -21,7 +21,8 @@ export class DestinationsService {
   }
 
   findAll() {
-    return `This action returns all destinations`;
+    return this.destinationsRepository.find({});
+    // return `This action returns all destinations`;
   }
 
   findOne(id: string) {
