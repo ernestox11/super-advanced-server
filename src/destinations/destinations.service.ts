@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateDestinationDto } from './dto/create-destination.dto';
-import { UpdateDestinationDto } from './dto/update-destination.dto';
+import { CreateDestinationInputDto } from './dto/create-destination-input.dto';
+import { UpdateDestinationInputDto } from './dto/update-destination-input.dto';
 import { DestinationsRepository } from './destinations.repository';
 import { Destination } from './schemas/destination.schema';
 
@@ -12,7 +12,7 @@ export class DestinationsService {
 
   async create(
     latitude: number,
-    longitude: number /*createDestinationDto: CreateDestinationDto*/,
+    longitude: number /*createDestinationDto: CreateDestinationInputDto*/,
   ): Promise<Destination> {
     return this.destinationsRepository.create({
       latitude,
@@ -30,7 +30,7 @@ export class DestinationsService {
     // return `This action returns a #${id} destination`;
   }
 
-  update(id: number, updateDestinationDto: UpdateDestinationDto) {
+  update(id: number, updateDestinationDto: UpdateDestinationInputDto) {
     return `This action updates a #${id} destination`;
   }
 
