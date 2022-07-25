@@ -1,14 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
 
-export type DestinationDocument = Destination & Document;
-
-@Schema()
+@Schema({ timestamps: true })
 export class Destination {
-  @Prop()
+  @Prop({ type: Number })
   latitude: number;
 
-  @Prop()
+  @Prop({ type: Number })
   longitude: number;
 }
 

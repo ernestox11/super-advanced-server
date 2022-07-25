@@ -4,10 +4,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { DestinationsModule } from './destinations/destinations.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017'),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGODB_CONNECTION_STRING),
     UsersModule,
     DestinationsModule,
   ],

@@ -8,15 +8,15 @@ import {
   Delete,
 } from '@nestjs/common';
 import { DestinationsService } from './destinations.service';
-import { CreateDestinationDto } from './dto/create-destination.dto';
-import { UpdateDestinationDto } from './dto/update-destination.dto';
+import { CreateDestinationInputDto } from './dto/create-destination-input.dto';
+import { UpdateDestinationInputDto } from './dto/update-destination-input.dto';
 
 @Controller('destinations')
 export class DestinationsController {
   constructor(private readonly destinationsService: DestinationsService) {}
 
   @Post()
-  create(@Body() createDestinationDto: CreateDestinationDto) {
+  create(@Body() createDestinationDto: CreateDestinationInputDto) {
     return this.destinationsService.create(
       createDestinationDto.latitude,
       createDestinationDto.longitude,
@@ -36,7 +36,7 @@ export class DestinationsController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateDestinationDto: UpdateDestinationDto,
+    @Body() updateDestinationDto: UpdateDestinationInputDto,
   ) {
     return this.destinationsService.update(+id, updateDestinationDto);
   }

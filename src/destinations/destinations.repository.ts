@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
-import { Destination, DestinationDocument } from './schemas/destination.schema';
+import { Destination } from './schemas/destination.schema';
 
 @Injectable()
 export class DestinationsRepository {
   constructor(
     @InjectModel(Destination.name)
-    private destinationModel: Model<DestinationDocument>,
+    private readonly destinationModel: Model<Destination>,
   ) {}
 
   async findOne(
