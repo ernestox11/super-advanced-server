@@ -17,11 +17,24 @@ export class UsersService {
     return this.usersRepository.find({});
   }
 
-  async createUser(email: string, age: number): Promise<User> {
+  async createUser(
+    email: string,
+    age: number,
+    firstName: string,
+    lastName: string,
+    phoneNumbers: [number],
+    address: string,
+    job: string,
+  ): Promise<User> {
     return this.usersRepository.create({
       userId: uuidv4(),
       email,
       age,
+      firstName,
+      lastName,
+      phoneNumbers,
+      address,
+      job,
     });
   }
 
