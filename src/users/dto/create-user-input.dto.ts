@@ -1,10 +1,41 @@
-import { IsEmail, Max, Min } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+} from 'class-validator';
 
 export class CreateUserInputDto {
   @IsEmail()
   email: string;
 
-  @Min(18)
-  @Max(99)
-  age: number;
+  @IsString()
+  password: string;
+
+  @IsBoolean()
+  isActive: boolean;
+
+  @IsString()
+  firstName: string;
+
+  @IsString()
+  lastName: string;
+
+  @IsString()
+  branchOffice: string;
+
+  @IsString()
+  accessLevel: string;
+
+  @IsString()
+  nationality: string;
+
+  @IsNumber()
+  idNumber: number;
+
+  @IsArray()
+  @IsNotEmpty()
+  phoneNumber: [number];
 }

@@ -14,17 +14,26 @@ export class User {
   @Prop({ type: String, unique: true })
   email: string;
 
-  @Prop({ type: Number })
-  age: number;
+  @Prop({ type: String })
+  password: string;
+
+  @Prop({ type: Boolean })
+  isActive: boolean;
+
+  @Prop({ type: String })
+  branchOffice: string;
+
+  @Prop({ type: String })
+  accessLevel: string;
+
+  @Prop({ type: String })
+  nationality: string;
+
+  @Prop({ type: String, unique: true })
+  idNumber: number;
 
   @Prop({ type: [Number] })
-  phoneNumbers: [number];
-
-  @Prop({ type: String })
-  address: string;
-
-  @Prop({ type: String })
-  job: string;
+  phoneNumber: [number];
 
   // Driver specific parameters
   @Prop({ type: String })

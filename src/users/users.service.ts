@@ -19,22 +19,28 @@ export class UsersService {
 
   async createUser(
     email: string,
-    age: number,
+    password: string,
+    isActive: boolean,
     firstName: string,
     lastName: string,
-    phoneNumbers: [number],
-    address: string,
-    job: string,
+    branchOffice: string,
+    accessLevel: string,
+    nationality: string,
+    idNumber: number,
+    phoneNumber: [number],
   ): Promise<User> {
     return this.usersRepository.create({
       userId: uuidv4(),
       email,
-      age,
+      password,
+      isActive,
       firstName,
       lastName,
-      phoneNumbers,
-      address,
-      job,
+      branchOffice,
+      accessLevel,
+      nationality,
+      idNumber,
+      phoneNumber,
     });
   }
 

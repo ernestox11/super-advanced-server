@@ -21,7 +21,18 @@ export class UsersController {
 
   @Post()
   async createUser(@Body() createUserDto: CreateUserInputDto): Promise<User> {
-    return this.usersService.createUser(createUserDto.email, createUserDto.age);
+    return this.usersService.createUser(
+      createUserDto.email,
+      createUserDto.password,
+      createUserDto.isActive,
+      createUserDto.firstName,
+      createUserDto.lastName,
+      createUserDto.branchOffice,
+      createUserDto.accessLevel,
+      createUserDto.nationality,
+      createUserDto.idNumber,
+      createUserDto.phoneNumber,
+    );
   }
 
   @Patch(':userId')
