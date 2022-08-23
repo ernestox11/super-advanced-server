@@ -13,7 +13,7 @@ export class Client {
   email: string;
 
   @Prop({ type: [ReceptionPointSchema] })
-  receptionPoints: [ReceptionPoint];
+  receptionPoints: ReceptionPoint[];
 
   @Prop({ type: [Number] })
   phoneNumber: number[];
