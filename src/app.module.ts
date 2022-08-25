@@ -9,6 +9,7 @@ import { ProductsModule } from './main/products/products.module';
 import { OrdersModule } from './main/orders/orders.module';
 import { DeliveryRoutesModule } from './main/delivery-routes/delivery-routes.module';
 import { TravelLogsModule } from './main/travel-logs/travel-logs.module';
+import { VehiclesModule } from './main/vehicles/vehicles.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { TravelLogsModule } from './main/travel-logs/travel-logs.module';
     OrdersModule,
     DeliveryRoutesModule,
     TravelLogsModule,
+    VehiclesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
