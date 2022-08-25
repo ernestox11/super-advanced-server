@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { ClientsRepository } from './clients.repository';
-import { ReceptionPoint } from '../common/schemas/receptionPoint.schema';
 import { Client } from './schemas/client.schema';
+import { ReceptionPoint } from 'src/common/schemas/receptionPoint.schema';
 
 @Injectable()
 export class ClientsService {

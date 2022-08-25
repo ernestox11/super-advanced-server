@@ -2,11 +2,9 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-
 import { ConfigModule } from '@nestjs/config';
-import { ClientsModule } from './clients/clients.module';
-import { ClientModule } from './client/client.module';
+import { UsersModule } from './main/users/users.module';
+import { ClientsModule } from './main/clients/clients.module';
 
 @Module({
   imports: [
@@ -14,7 +12,6 @@ import { ClientModule } from './client/client.module';
     MongooseModule.forRoot(process.env.MONGODB_CONNECTION_STRING),
     UsersModule,
     ClientsModule,
-    ClientModule,
   ],
   controllers: [AppController],
   providers: [AppService],
