@@ -1,8 +1,32 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import {
-  ReceptionPoint,
-  ReceptionPointSchema,
-} from '../../common/schemas/receptionPoint.schema';
+
+export class Location {
+  @Prop({ type: Number })
+  latitude: number;
+
+  @Prop({ type: Number })
+  longitude: number;
+}
+
+export class Address {
+  @Prop({ type: String })
+  state: string;
+
+  @Prop({ type: String })
+  city: string;
+
+  @Prop({ type: String })
+  streetAddress: string;
+
+  @Prop({ type: Number })
+  postalCode: number;
+}
+
+export class ReceptionPoint {
+  location: Location;
+  receptionTimes: [[number, number]];
+  address: Address;
+}
 
 @Schema({ timestamps: true })
 export class Client {
@@ -12,8 +36,8 @@ export class Client {
   @Prop({ type: String, unique: true })
   email: string;
 
-  @Prop({ type: [ReceptionPointSchema] })
-  receptionPoints: ReceptionPoint[];
+  @Prop({})
+  receptionPoints: [ReceptionPoint];
 
   @Prop({ type: [Number] })
   phoneNumber: number[];
