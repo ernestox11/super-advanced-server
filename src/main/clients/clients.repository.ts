@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   NotFoundException,
+  UnprocessableEntityException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, isValidObjectId } from 'mongoose';
@@ -16,8 +17,12 @@ export class ClientsRepository {
   async findOne(clientId: string): Promise<Client> {
     let client: Client;
 
-    if (!client && isValidObjectId(clientId)) {
-      client = await this.clientModel.findById(clientId);
+    if (!client) {
+      if (isValidObjectId(clientId))
+        client = await this.clientModel.findById(clientId);
+      else {
+        throw new UnprocessableEntityException(`Invalid ID`);
+      }
     }
 
     if (!client) {
@@ -43,11 +48,17 @@ export class ClientsRepository {
   }
 
   async deleteOne(clientId: string) {
-    const { deletedCount } = await this.clientModel.deleteOne({
-      _id: clientId,
-    });
-    if (deletedCount === 0) {
-      throw new BadRequestException(`Client with id: "${clientId}" not found.`);
+    if (isValidObjectId(clientId)) {
+      const { deletedCount } = await this.clientModel.deleteOne({
+        _id: clientId,
+      });
+      if (deletedCount === 0) {
+        throw new BadRequestException(
+          `Client with id: "${clientId}" not found.`,
+        );
+      }
+    } else {
+      throw new UnprocessableEntityException(`Invalid ID`);
     }
     return;
   }
