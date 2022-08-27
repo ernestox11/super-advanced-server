@@ -9,4 +9,4 @@ export class Location {
   longitude: number;
 }
 
-export const LocationScehma = SchemaFactory.createForClass(Location);
+export const LocationSchema = SchemaFactory.createForClass(Location);
