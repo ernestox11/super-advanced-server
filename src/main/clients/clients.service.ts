@@ -23,18 +23,18 @@ export class ClientsService {
   }
 
   findAll() {
-    return `This action returns all clients`;
+    return this.clientRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} client`;
+  findClientById(clientId: string) {
+    return this.clientRepository.findOne(clientId);
   }
 
-  update(id: number, updateClientDto: UpdateClientDto) {
-    return `This action updates a #${id} client`;
+  updateClient(clientId: string, clientUpdates: UpdateClientDto) {
+    return this.clientRepository.findOneAndUpdate({ clientId }, clientUpdates);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} client`;
+  removeClient(clientId: string) {
+    return this.clientRepository.deleteOne(clientId);
   }
 }

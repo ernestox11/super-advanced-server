@@ -32,16 +32,19 @@ export class ClientsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.clientsService.findOne(+id);
+    return this.clientsService.findClientById(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
-    return this.clientsService.update(+id, updateClientDto);
+  update(
+    @Param('clientId') clientId: string,
+    @Body() updateClientDto: UpdateClientDto,
+  ) {
+    return this.clientsService.updateClient(clientId, updateClientDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.clientsService.remove(+id);
+    return this.clientsService.removeClient(id);
   }
 }

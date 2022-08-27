@@ -1,32 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-
-export class Location {
-  @Prop({ type: Number })
-  latitude: number;
-
-  @Prop({ type: Number })
-  longitude: number;
-}
-
-export class Address {
-  @Prop({ type: String })
-  state: string;
-
-  @Prop({ type: String })
-  city: string;
-
-  @Prop({ type: String })
-  streetAddress: string;
-
-  @Prop({ type: Number })
-  postalCode: number;
-}
-
-export class ReceptionPoint {
-  location: Location;
-  receptionTimes: [[number, number]];
-  address: Address;
-}
+import { ReceptionPoint } from 'src/common/schemas/receptionPoint.schema';
 
 @Schema({ timestamps: true })
 export class Client {
