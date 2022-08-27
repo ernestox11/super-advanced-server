@@ -10,7 +10,7 @@ export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
   async getUserById(userId: string): Promise<User> {
-    return this.usersRepository.findOne({ userId });
+    return this.usersRepository.findOne(userId);
   }
 
   async getUsers(): Promise<User[]> {

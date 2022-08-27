@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseUUIDPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { CreateUserInputDto } from './dto/create-user-input.dto';
 import { UpdateUserInputDto } from './dto/update-user-input.dto';
 
@@ -10,7 +18,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get(':userId')
-  async getUser(@Param('userId') userId: string): Promise<User> {
+  async getUser(@Param('userId', ParseUUIDPipe) userId: string): Promise<User> {
     return this.usersService.getUserById(userId);
   }
 
@@ -37,7 +45,7 @@ export class UsersController {
 
   @Patch(':userId')
   async updateUser(
-    @Param('userId') userId: string,
+    @Param('userId', ParseUUIDPipe) userId: string,
     @Body() updateUserDto: UpdateUserInputDto,
   ): Promise<User> {
     return this.usersService.updateUser(userId, updateUserDto);
