@@ -10,7 +10,7 @@ import {
 import { CreateUserInputDto } from './dto/create-user-input.dto';
 import { UpdateUserInputDto } from './dto/update-user-input.dto';
 
-import { User } from './schemas/user.schema';
+import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
 @Controller('users')

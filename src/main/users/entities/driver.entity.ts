@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { User } from './user.schema';
+import { User } from './user.entity';
 
 @Schema({ timestamps: true })
 export class Driver extends User {

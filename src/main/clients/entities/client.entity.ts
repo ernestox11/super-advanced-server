@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ReceptionPoint } from 'src/common/schemas/receptionPoint.schema';
+import { ReceptionPoint } from 'src/common/entities/receptionPoint.entity';
 
 @Schema({ timestamps: true })
 export class Client {

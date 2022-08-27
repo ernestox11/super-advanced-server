@@ -1,6 +1,6 @@
 import { SchemaFactory } from '@nestjs/mongoose';
-import { Address } from './address.schema';
-import { Location } from './location.schema';
+import { Address } from './address.entity';
+import { Location } from './location.entity';
 
 export class ReceptionPoint {
   location: Location;

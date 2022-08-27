@@ -1,4 +1,4 @@
-import { Location } from '../../../common/schemas/location.schema';
+import { Location } from '../../../common/entities/location.entity';
 
 export class DeliveryRoute {
   driverId: string;

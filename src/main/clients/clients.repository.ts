@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model, isValidObjectId } from 'mongoose';
-import { Client } from './schemas/client.schema';
+import { Client } from './entities/client.entity';
 
 @Injectable()
 export class ClientsRepository {
