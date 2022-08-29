@@ -21,8 +21,8 @@ export class LoadCapacitiesService {
   }
 
   update(id: string, updateLoadCapacityDto: UpdateLoadCapacityDto) {
-    return this.loadCapacityRepository.findOneAndUpdate(
-      { id },
+    return this.loadCapacityRepository.findByIdAndUpdate(
+      id,
       updateLoadCapacityDto,
     );
   }

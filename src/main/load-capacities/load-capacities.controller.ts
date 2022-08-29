@@ -10,6 +10,7 @@ import {
 import { LoadCapacitiesService } from './load-capacities.service';
 import { CreateLoadCapacityDto } from './dto/create-load-capacity.dto';
 import { UpdateLoadCapacityDto } from './dto/update-load-capacity.dto';
+import { ParseMongoIdPipe } from '../../common/pipes/parse-mongo-id.pipe';
 
 @Controller('load-capacities')
 export class LoadCapacitiesController {
@@ -26,20 +27,20 @@ export class LoadCapacitiesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseMongoIdPipe) id: string) {
     return this.loadCapacitiesService.findOneById(id);
   }
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id', ParseMongoIdPipe) id: string,
     @Body() updateLoadCapacityDto: UpdateLoadCapacityDto,
   ) {
     return this.loadCapacitiesService.update(id, updateLoadCapacityDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseMongoIdPipe) id: string) {
     return this.loadCapacitiesService.remove(id);
   }
 }

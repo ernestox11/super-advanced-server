@@ -43,14 +43,11 @@ export class LoadCapacitiesRepository {
     return newLoadCapacity.save();
   }
 
-  async findOneAndUpdate(
-    loadCapacityFilterQuery: FilterQuery<LoadCapacity>,
+  async findByIdAndUpdate(
+    id: string,
     loadCapacity: Partial<LoadCapacity>,
   ): Promise<LoadCapacity> {
-    return this.loadCapacityModel.findOneAndUpdate(
-      loadCapacityFilterQuery,
-      loadCapacity,
-    );
+    return this.loadCapacityModel.findByIdAndUpdate(id, loadCapacity);
   }
 
   async deleteOne(loadCapacityId: string) {
