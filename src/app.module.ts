@@ -10,6 +10,8 @@ import { OrdersModule } from './main/orders/orders.module';
 import { DeliveryRoutesModule } from './main/delivery-routes/delivery-routes.module';
 import { TravelLogsModule } from './main/travel-logs/travel-logs.module';
 import { VehiclesModule } from './main/vehicles/vehicles.module';
+import { VehicleModelsModule } from './main/vehicle-models/vehicle-models.module';
+import { LoadCapacitiesModule } from './main/load-capacities/load-capacities.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { VehiclesModule } from './main/vehicles/vehicles.module';
     DeliveryRoutesModule,
     TravelLogsModule,
     VehiclesModule,
+    VehicleModelsModule,
+    LoadCapacitiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
