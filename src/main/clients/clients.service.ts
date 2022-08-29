@@ -8,7 +8,7 @@ import { ReceptionPoint } from 'src/common/entities/receptionPoint.entity';
 export class ClientsService {
   constructor(private readonly clientRepository: ClientsRepository) {}
 
-  createClient(
+  create(
     clientName: string,
     email: string,
     receptionPoints: [ReceptionPoint],
@@ -26,15 +26,15 @@ export class ClientsService {
     return this.clientRepository.find({});
   }
 
-  findClientById(clientId: string) {
-    return this.clientRepository.findOne(clientId);
+  findById(id: string) {
+    return this.clientRepository.findOne(id);
   }
 
-  updateClient(clientId: string, clientUpdates: UpdateClientDto) {
-    return this.clientRepository.findOneAndUpdate({ clientId }, clientUpdates);
+  update(id: string, clientUpdates: UpdateClientDto) {
+    return this.clientRepository.findByIdAndUpdate(id, clientUpdates);
   }
 
-  removeClient(clientId: string) {
-    return this.clientRepository.deleteOne(clientId);
+  remove(id: string) {
+    return this.clientRepository.deleteOne(id);
   }
 }

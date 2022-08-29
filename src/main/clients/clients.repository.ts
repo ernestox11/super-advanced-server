@@ -40,11 +40,11 @@ export class ClientsRepository {
     return newClient.save();
   }
 
-  async findOneAndUpdate(
-    clientFilterQuery: FilterQuery<Client>,
+  async findByIdAndUpdate(
+    id: string,
     client: Partial<Client>,
   ): Promise<Client> {
-    return this.clientModel.findOneAndUpdate(clientFilterQuery, client);
+    return this.clientModel.findByIdAndUpdate(id, client);
   }
 
   async deleteOne(clientId: string) {

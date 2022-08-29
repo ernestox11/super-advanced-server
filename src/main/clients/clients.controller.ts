@@ -10,6 +10,7 @@ import {
 import { ClientsService } from './clients.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
+import { ParseMongoIdPipe } from '../../common/pipes/parse-mongo-id.pipe';
 
 @Controller('clients')
 export class ClientsController {
@@ -17,7 +18,7 @@ export class ClientsController {
 
   @Post()
   create(@Body() createClientDto: CreateClientDto) {
-    return this.clientsService.createClient(
+    return this.clientsService.create(
       createClientDto.clientName,
       createClientDto.email,
       createClientDto.receptionPoints,
@@ -31,20 +32,20 @@ export class ClientsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.clientsService.findClientById(id);
+  findOne(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.clientsService.findById(id);
   }
 
   @Patch(':id')
   update(
-    @Param('clientId') clientId: string,
+    @Param('id', ParseMongoIdPipe) id: string,
     @Body() updateClientDto: UpdateClientDto,
   ) {
-    return this.clientsService.updateClient(clientId, updateClientDto);
+    return this.clientsService.update(id, updateClientDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.clientsService.removeClient(id);
+  remove(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.clientsService.remove(id);
   }
 }
