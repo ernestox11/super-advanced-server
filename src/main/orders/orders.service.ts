@@ -1,26 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { Order } from './entities/order.entity';
+import { OrdersRepository } from './orders.repository';
 
 @Injectable()
 export class OrdersService {
-  create(createOrderDto: CreateOrderDto) {
-    return 'This action adds a new order';
+  constructor(private readonly orderRepository: OrdersRepository) {}
+
+  create(createOrderDto: CreateOrderDto): Promise<Order> {
+    return this.orderRepository.create(createOrderDto);
   }
 
   findAll() {
-    return `This action returns all orders`;
+    return this.orderRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
+  findById(id: string) {
+    return this.orderRepository.findOne(id);
   }
 
-  update(id: number, updateOrderDto: UpdateOrderDto) {
-    return `This action updates a #${id} order`;
+  update(id: string, orderUpdates: UpdateOrderDto) {
+    return this.orderRepository.findByIdAndUpdate(id, orderUpdates);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} order`;
+  remove(id: string) {
+    return this.orderRepository.deleteOne(id);
   }
 }
