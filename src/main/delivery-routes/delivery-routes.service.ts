@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
+import { DeliveryRoutesRepository } from './delivery-routes.repository';
 import { CreateDeliveryRouteDto } from './dto/create-delivery-route.dto';
 import { UpdateDeliveryRouteDto } from './dto/update-delivery-route.dto';
+import { DeliveryRoute } from './entities/delivery-route.entity';
 
 @Injectable()
 export class DeliveryRoutesService {
-  create(createDeliveryRouteDto: CreateDeliveryRouteDto) {
-    return 'This action adds a new deliveryRoute';
+  constructor(
+    private readonly deliveryRouteRepository: DeliveryRoutesRepository,
+  ) {}
+
+  create(
+    createDeliveryRouteDto: CreateDeliveryRouteDto,
+  ): Promise<DeliveryRoute> {
+    return this.deliveryRouteRepository.create(createDeliveryRouteDto);
   }
 
   findAll() {
-    return `This action returns all deliveryRoutes`;
+    return this.deliveryRouteRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} deliveryRoute`;
+  findById(id: string) {
+    return this.deliveryRouteRepository.findOne(id);
   }
 
-  update(id: number, updateDeliveryRouteDto: UpdateDeliveryRouteDto) {
-    return `This action updates a #${id} deliveryRoute`;
+  update(id: string, deliveryRouteUpdates: UpdateDeliveryRouteDto) {
+    return this.deliveryRouteRepository.findByIdAndUpdate(
+      id,
+      deliveryRouteUpdates,
+    );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} deliveryRoute`;
+  remove(id: string) {
+    return this.deliveryRouteRepository.deleteOne(id);
   }
 }

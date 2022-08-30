@@ -10,6 +10,7 @@ import {
 import { DeliveryRoutesService } from './delivery-routes.service';
 import { CreateDeliveryRouteDto } from './dto/create-delivery-route.dto';
 import { UpdateDeliveryRouteDto } from './dto/update-delivery-route.dto';
+import { ParseMongoIdPipe } from '../../common/pipes/parse-mongo-id.pipe';
 
 @Controller('delivery-routes')
 export class DeliveryRoutesController {
@@ -26,20 +27,20 @@ export class DeliveryRoutesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.deliveryRoutesService.findOne(+id);
+  findOne(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.deliveryRoutesService.findById(id);
   }
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id', ParseMongoIdPipe) id: string,
     @Body() updateDeliveryRouteDto: UpdateDeliveryRouteDto,
   ) {
-    return this.deliveryRoutesService.update(+id, updateDeliveryRouteDto);
+    return this.deliveryRoutesService.update(id, updateDeliveryRouteDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.deliveryRoutesService.remove(+id);
+  remove(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.deliveryRoutesService.remove(id);
   }
 }
