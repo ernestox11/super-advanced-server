@@ -14,12 +14,11 @@ export class ClientsRepository {
     @InjectModel(Client.name) private readonly clientModel: Model<Client>,
   ) {}
 
-  async findOne(clientId: string): Promise<Client> {
+  async findOne(id: string): Promise<Client> {
     let client: Client;
 
     if (!client) {
-      if (isValidObjectId(clientId))
-        client = await this.clientModel.findById(clientId);
+      if (isValidObjectId(id)) client = await this.clientModel.findById(id);
       else {
         throw new UnprocessableEntityException(`Invalid ID`);
       }

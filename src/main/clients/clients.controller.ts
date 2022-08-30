@@ -18,12 +18,7 @@ export class ClientsController {
 
   @Post()
   create(@Body() createClientDto: CreateClientDto) {
-    return this.clientsService.create(
-      createClientDto.clientName,
-      createClientDto.email,
-      createClientDto.receptionPoints,
-      createClientDto.phoneNumber,
-    );
+    return this.clientsService.create(createClientDto);
   }
 
   @Get()

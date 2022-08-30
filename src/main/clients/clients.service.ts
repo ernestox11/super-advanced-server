@@ -2,24 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { ClientsRepository } from './clients.repository';
 import { Client } from './entities/client.entity';
-import { ReceptionPoint } from 'src/common/entities/receptionPoint.entity';
+import { CreateClientDto } from './dto/create-client.dto';
 
 @Injectable()
 export class ClientsService {
   constructor(private readonly clientRepository: ClientsRepository) {}
 
-  create(
-    clientName: string,
-    email: string,
-    receptionPoints: [ReceptionPoint],
-    phoneNumber: [number],
-  ): Promise<Client> {
-    return this.clientRepository.create({
-      clientName,
-      email,
-      receptionPoints,
-      phoneNumber,
-    });
+  create(createClientDto: CreateClientDto): Promise<Client> {
+    return this.clientRepository.create(createClientDto);
   }
 
   findAll() {
