@@ -27,8 +27,8 @@ export class LoadCapacitiesController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseMongoIdPipe) id: string) {
-    return this.loadCapacitiesService.findOneById(id);
+  findById(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.loadCapacitiesService.findByIdById(id);
   }
 
   @Patch(':id')

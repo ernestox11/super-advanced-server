@@ -15,7 +15,7 @@ export class LoadCapacitiesRepository {
     private readonly loadCapacityModel: Model<LoadCapacity>,
   ) {}
 
-  async findOne(loadCapacityId: string): Promise<LoadCapacity> {
+  async findById(loadCapacityId: string): Promise<LoadCapacity> {
     let loadCapacity: LoadCapacity;
 
     if (!loadCapacity) {

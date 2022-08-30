@@ -15,7 +15,7 @@ export class DeliveryRoutesRepository {
     private readonly deliveryRouteModel: Model<DeliveryRoute>,
   ) {}
 
-  async findOne(id: string): Promise<DeliveryRoute> {
+  async findById(id: string): Promise<DeliveryRoute> {
     let deliveryRoute: DeliveryRoute;
 
     if (!deliveryRoute) {

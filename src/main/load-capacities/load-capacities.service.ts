@@ -16,8 +16,8 @@ export class LoadCapacitiesService {
     return this.loadCapacityRepository.find({});
   }
 
-  findOneById(id: string) {
-    return this.loadCapacityRepository.findOne(id);
+  findByIdById(id: string) {
+    return this.loadCapacityRepository.findById(id);
   }
 
   update(id: string, updateLoadCapacityDto: UpdateLoadCapacityDto) {

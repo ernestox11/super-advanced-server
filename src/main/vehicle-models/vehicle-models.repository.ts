@@ -15,7 +15,7 @@ export class VehicleModelsRepository {
     private readonly vehicleModelModel: Model<VehicleModel>,
   ) {}
 
-  async findOne(vehicleModelId: string): Promise<VehicleModel> {
+  async findById(vehicleModelId: string): Promise<VehicleModel> {
     let vehicleModel: VehicleModel;
 
     if (!vehicleModel) {

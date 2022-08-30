@@ -27,8 +27,8 @@ export class VehiclesController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseMongoIdPipe) id: string) {
-    return this.vehiclesService.findOneById(id);
+  findById(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.vehiclesService.findByIdById(id);
   }
 
   @Patch(':id')

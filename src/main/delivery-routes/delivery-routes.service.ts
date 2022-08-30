@@ -21,7 +21,7 @@ export class DeliveryRoutesService {
   }
 
   findById(id: string) {
-    return this.deliveryRouteRepository.findOne(id);
+    return this.deliveryRouteRepository.findById(id);
   }
 
   update(id: string, deliveryRouteUpdates: UpdateDeliveryRouteDto) {

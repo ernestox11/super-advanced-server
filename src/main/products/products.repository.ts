@@ -14,7 +14,7 @@ export class ProductsRepository {
     @InjectModel(Product.name) private readonly productModel: Model<Product>,
   ) {}
 
-  async findOne(id: string): Promise<Product> {
+  async findById(id: string): Promise<Product> {
     let product: Product;
 
     if (!product) {

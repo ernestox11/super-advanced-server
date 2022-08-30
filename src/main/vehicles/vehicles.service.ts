@@ -15,8 +15,8 @@ export class VehiclesService {
     return this.vehiclesRepository.find({});
   }
 
-  findOneById(id: string) {
-    return this.vehiclesRepository.findOne(id);
+  findByIdById(id: string) {
+    return this.vehiclesRepository.findById(id);
   }
 
   update(id: string, updateVehicleDto: UpdateVehicleDto) {

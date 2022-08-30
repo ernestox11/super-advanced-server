@@ -14,7 +14,7 @@ export class OrdersRepository {
     @InjectModel(Order.name) private readonly orderModel: Model<Order>,
   ) {}
 
-  async findOne(id: string): Promise<Order> {
+  async findById(id: string): Promise<Order> {
     let order: Order;
 
     if (!order) {

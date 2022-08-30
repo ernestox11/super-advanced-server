@@ -17,7 +17,7 @@ export class TravelLogsService {
   }
 
   findById(id: string) {
-    return this.travelLogRepository.findOne(id);
+    return this.travelLogRepository.findById(id);
   }
 
   update(id: string, travelLogUpdates: UpdateTravelLogDto) {

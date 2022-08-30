@@ -17,7 +17,7 @@ export class ClientsService {
   }
 
   findById(id: string) {
-    return this.clientRepository.findOne(id);
+    return this.clientRepository.findById(id);
   }
 
   update(id: string, clientUpdates: UpdateClientDto) {

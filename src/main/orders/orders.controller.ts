@@ -27,7 +27,7 @@ export class OrdersController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseMongoIdPipe) id: string) {
+  findById(@Param('id', ParseMongoIdPipe) id: string) {
     return this.ordersService.findById(id);
   }
 

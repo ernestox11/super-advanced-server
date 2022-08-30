@@ -14,7 +14,7 @@ export class ClientsRepository {
     @InjectModel(Client.name) private readonly clientModel: Model<Client>,
   ) {}
 
-  async findOne(id: string): Promise<Client> {
+  async findById(id: string): Promise<Client> {
     let client: Client;
 
     if (!client) {

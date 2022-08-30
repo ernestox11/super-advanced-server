@@ -17,7 +17,7 @@ export class OrdersService {
   }
 
   findById(id: string) {
-    return this.orderRepository.findOne(id);
+    return this.orderRepository.findById(id);
   }
 
   update(id: string, orderUpdates: UpdateOrderDto) {

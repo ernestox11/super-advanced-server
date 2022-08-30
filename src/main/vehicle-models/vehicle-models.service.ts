@@ -19,7 +19,7 @@ export class VehicleModelsService {
   }
 
   findById(id: string) {
-    return this.vehicleModelRepository.findOne(id);
+    return this.vehicleModelRepository.findById(id);
   }
 
   update(id: string, vehicleModelUpdates: UpdateVehicleModelDto) {

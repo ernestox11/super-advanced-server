@@ -15,7 +15,7 @@ export class TravelLogsRepository {
     private readonly travelLogModel: Model<TravelLog>,
   ) {}
 
-  async findOne(id: string): Promise<TravelLog> {
+  async findById(id: string): Promise<TravelLog> {
     let travelLog: TravelLog;
 
     if (!travelLog) {
