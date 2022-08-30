@@ -10,6 +10,7 @@ import {
 import { TravelLogsService } from './travel-logs.service';
 import { CreateTravelLogDto } from './dto/create-travel-log.dto';
 import { UpdateTravelLogDto } from './dto/update-travel-log.dto';
+import { ParseMongoIdPipe } from '../../common/pipes/parse-mongo-id.pipe';
 
 @Controller('travel-logs')
 export class TravelLogsController {
@@ -26,20 +27,20 @@ export class TravelLogsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.travelLogsService.findOne(+id);
+  findOne(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.travelLogsService.findById(id);
   }
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
+    @Param('id', ParseMongoIdPipe) id: string,
     @Body() updateTravelLogDto: UpdateTravelLogDto,
   ) {
-    return this.travelLogsService.update(+id, updateTravelLogDto);
+    return this.travelLogsService.update(id, updateTravelLogDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.travelLogsService.remove(+id);
+  remove(@Param('id', ParseMongoIdPipe) id: string) {
+    return this.travelLogsService.remove(id);
   }
 }

@@ -1,26 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTravelLogDto } from './dto/create-travel-log.dto';
 import { UpdateTravelLogDto } from './dto/update-travel-log.dto';
+import { TravelLog } from './entities/travel-log.entity';
+import { TravelLogsRepository } from './travel-logs.repository';
 
 @Injectable()
 export class TravelLogsService {
-  create(createTravelLogDto: CreateTravelLogDto) {
-    return 'This action adds a new travelLog';
+  constructor(private readonly travelLogRepository: TravelLogsRepository) {}
+
+  create(createTravelLogDto: CreateTravelLogDto): Promise<TravelLog> {
+    return this.travelLogRepository.create(createTravelLogDto);
   }
 
   findAll() {
-    return `This action returns all travelLogs`;
+    return this.travelLogRepository.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} travelLog`;
+  findById(id: string) {
+    return this.travelLogRepository.findOne(id);
   }
 
-  update(id: number, updateTravelLogDto: UpdateTravelLogDto) {
-    return `This action updates a #${id} travelLog`;
+  update(id: string, travelLogUpdates: UpdateTravelLogDto) {
+    return this.travelLogRepository.findByIdAndUpdate(id, travelLogUpdates);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} travelLog`;
+  remove(id: string) {
+    return this.travelLogRepository.deleteOne(id);
   }
 }
