@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { CreateDriverInputDto } from './dto/create-driver-input.dto';
 import { CreateUserInputDto } from './dto/create-user-input.dto';
 import { UpdateUserInputDto } from './dto/update-user-input.dto';
 import { Driver } from './entities/driver.entity';
@@ -46,11 +47,29 @@ export class UsersController {
       createUserDto.nationality,
       createUserDto.idNumber,
       createUserDto.phoneNumber,
-      createUserDto.driverLicenseStatus,
-      createUserDto.designatedVehicleId,
-      createUserDto.vehicleModel,
-      createUserDto.vehicleVolume,
-      createUserDto.vehicleWeight,
+    );
+  }
+
+  @Post('drivers')
+  async createDriver(
+    @Body() createDriverDto: CreateDriverInputDto,
+  ): Promise<Driver> {
+    return this.usersService.createDriver(
+      createDriverDto.email,
+      createDriverDto.password,
+      createDriverDto.isActive,
+      createDriverDto.firstName,
+      createDriverDto.lastName,
+      createDriverDto.branchOffice,
+      createDriverDto.accessLevel,
+      createDriverDto.nationality,
+      createDriverDto.idNumber,
+      createDriverDto.phoneNumber,
+      createDriverDto.driverLicenseStatus,
+      createDriverDto.designatedVehicleId,
+      createDriverDto.vehicleModel,
+      createDriverDto.vehicleVolume,
+      createDriverDto.vehicleWeight,
     );
   }
 

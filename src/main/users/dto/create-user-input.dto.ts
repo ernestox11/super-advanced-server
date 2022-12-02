@@ -47,19 +47,4 @@ export class CreateUserInputDto {
   @IsArray()
   @IsNotEmpty()
   phoneNumber: [number];
-
-  @IsString()
-  driverLicenseStatus: string;
-
-  @IsString()
-  designatedVehicleId: string;
-
-  @IsString()
-  vehicleModel: string;
-
-  @IsNumber()
-  vehicleVolume: number;
-
-  @IsNumber()
-  vehicleWeight: number;
 }

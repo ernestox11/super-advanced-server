@@ -20,4 +20,4 @@ export class Driver extends User {
   vehicleWeight: number;
 }
 
-export const DriverSchema = SchemaFactory.createForClass(User);
+export const DriverSchema = SchemaFactory.createForClass(Driver);

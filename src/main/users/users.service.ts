@@ -33,13 +33,40 @@ export class UsersService {
     nationality: string,
     idNumber: number,
     phoneNumber: [number],
+  ): Promise<User> {
+    return this.usersRepository.create({
+      userId: uuidv4(),
+      email,
+      password,
+      isActive,
+      firstName,
+      lastName,
+      branchOffice,
+      accessLevel,
+      nationality,
+      idNumber,
+      phoneNumber,
+    });
+  }
+
+  async createDriver(
+    email: string,
+    password: string,
+    isActive: boolean,
+    firstName: string,
+    lastName: string,
+    branchOffice: string,
+    accessLevel: string,
+    nationality: string,
+    idNumber: number,
+    phoneNumber: [number],
     driverLicenseStatus: string,
     designatedVehicleId: string,
     vehicleModel: string,
     vehicleVolume: number,
     vehicleWeight: number,
-  ): Promise<User> {
-    return this.usersRepository.create({
+  ): Promise<Driver> {
+    return this.usersRepository.createDriver({
       userId: uuidv4(),
       email,
       password,

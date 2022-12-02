@@ -8,6 +8,7 @@ import { User } from './entities/user.entity';
 export class UsersRepository {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<User>,
+    @InjectModel(Driver.name) private readonly driverModel: Model<Driver>,
   ) {}
 
   async findOne(userId: string): Promise<User> {
@@ -25,6 +26,11 @@ export class UsersRepository {
   async create(user: User): Promise<User> {
     const newUser = new this.userModel(user);
     return newUser.save();
+  }
+
+  async createDriver(driver: Driver): Promise<Driver> {
+    const newDriver = new this.driverModel(driver);
+    return newDriver.save();
   }
 
   async findOneAndUpdate(
