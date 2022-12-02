@@ -4,6 +4,7 @@ import { UpdateUserInputDto } from './dto/update-user-input.dto';
 import { User } from './entities/user.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { UsersRepository } from './users.repository';
+import { Driver } from './entities/driver.entity';
 
 @Injectable()
 export class UsersService {
@@ -17,7 +18,7 @@ export class UsersService {
     return this.usersRepository.find({});
   }
 
-  async getDrivers(): Promise<User[]> {
+  async getDrivers(): Promise<Driver[]> {
     return this.usersRepository.findDrivers({});
   }
 
@@ -32,6 +33,11 @@ export class UsersService {
     nationality: string,
     idNumber: number,
     phoneNumber: [number],
+    driverLicenseStatus: string,
+    designatedVehicleId: string,
+    vehicleModel: string,
+    vehicleVolume: number,
+    vehicleWeight: number,
   ): Promise<User> {
     return this.usersRepository.create({
       userId: uuidv4(),
@@ -45,6 +51,11 @@ export class UsersService {
       nationality,
       idNumber,
       phoneNumber,
+      driverLicenseStatus,
+      designatedVehicleId,
+      vehicleModel,
+      vehicleVolume,
+      vehicleWeight,
     });
   }
 

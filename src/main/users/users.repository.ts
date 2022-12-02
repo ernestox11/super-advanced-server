@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
+import { Driver } from './entities/driver.entity';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -17,7 +18,7 @@ export class UsersRepository {
     return this.userModel.find(userFilterQuery);
   }
 
-  async findDrivers(userFilterQuery: FilterQuery<User>): Promise<User[]> {
+  async findDrivers(userFilterQuery: FilterQuery<Driver>): Promise<Driver[]> {
     return this.userModel.find({ accessLevel: 'Conductor' });
   }
 

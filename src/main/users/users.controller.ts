@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserInputDto } from './dto/create-user-input.dto';
 import { UpdateUserInputDto } from './dto/update-user-input.dto';
+import { Driver } from './entities/driver.entity';
 
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
@@ -18,7 +19,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get('drivers')
-  async getDrivers(): Promise<User[]> {
+  async getDrivers(): Promise<Driver[]> {
     return this.usersService.getDrivers();
   }
 
@@ -45,6 +46,11 @@ export class UsersController {
       createUserDto.nationality,
       createUserDto.idNumber,
       createUserDto.phoneNumber,
+      createUserDto.driverLicenseStatus,
+      createUserDto.designatedVehicleId,
+      createUserDto.vehicleModel,
+      createUserDto.vehicleVolume,
+      createUserDto.vehicleWeight,
     );
   }
 

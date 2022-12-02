@@ -9,6 +9,15 @@ export class Driver extends User {
 
   @Prop({ type: String })
   designatedVehicleId: string;
+
+  @Prop({ type: String })
+  vehicleModel: string;
+
+  @Prop({ type: Number })
+  vehicleVolume: number;
+
+  @Prop({ type: Number })
+  vehicleWeight: number;
 }
 
 export const DriverSchema = SchemaFactory.createForClass(User);
