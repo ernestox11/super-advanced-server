@@ -17,6 +17,10 @@ export class UsersRepository {
     return this.userModel.find(userFilterQuery);
   }
 
+  async findDrivers(userFilterQuery: FilterQuery<User>): Promise<User[]> {
+    return this.userModel.find({ accessLevel: 'Conductor' });
+  }
+
   async create(user: User): Promise<User> {
     const newUser = new this.userModel(user);
     return newUser.save();

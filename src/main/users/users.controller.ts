@@ -17,6 +17,11 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Get('drivers')
+  async getDrivers(): Promise<User[]> {
+    return this.usersService.getDrivers();
+  }
+
   @Get(':userId')
   async getUser(@Param('userId', ParseUUIDPipe) userId: string): Promise<User> {
     return this.usersService.getUserById(userId);
