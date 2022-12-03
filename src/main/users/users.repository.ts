@@ -20,7 +20,7 @@ export class UsersRepository {
   }
 
   async findDrivers(): Promise<Driver[]> {
-    return this.userModel.find({ accessLevel: 'Conductor' });
+    return this.driverModel.find({ accessLevel: 'Conductor' });
   }
 
   async create(user: User): Promise<User> {
