@@ -13,6 +13,12 @@ export class Task {
 
   @Prop()
   status: string;
+
+  @Prop()
+  volume: number;
+
+  @Prop()
+  weight: number;
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task);
