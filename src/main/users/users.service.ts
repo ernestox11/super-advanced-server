@@ -19,7 +19,7 @@ export class UsersService {
   }
 
   async getDrivers(): Promise<Driver[]> {
-    return this.usersRepository.findDrivers({});
+    return this.usersRepository.findDrivers();
   }
 
   async createUser(

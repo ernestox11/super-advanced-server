@@ -19,7 +19,7 @@ export class UsersRepository {
     return this.userModel.find(userFilterQuery);
   }
 
-  async findDrivers(userFilterQuery: FilterQuery<Driver>): Promise<Driver[]> {
+  async findDrivers(): Promise<Driver[]> {
     return this.userModel.find({ accessLevel: 'Conductor' });
   }
 
