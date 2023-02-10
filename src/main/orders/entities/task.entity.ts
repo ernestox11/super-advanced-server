@@ -6,6 +6,9 @@ export class Task {
   productID: string;
 
   @Prop()
+  productName: string;
+
+  @Prop()
   quantity: number;
 
   @Prop()
