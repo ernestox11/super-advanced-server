@@ -14,6 +14,10 @@ export class CreateOrderDto extends PartialType(CreateTaskDto) {
 
   @IsString()
   @IsNotEmpty()
+  clientName: string;
+
+  @IsString()
+  @IsNotEmpty()
   branchOffice: string;
 
   @IsString()
