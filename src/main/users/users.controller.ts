@@ -6,6 +6,8 @@ import {
   ParseUUIDPipe,
   Patch,
   Post,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateDriverInputDto } from './dto/create-driver-input.dto';
 import { CreateUserInputDto } from './dto/create-user-input.dto';
@@ -14,6 +16,8 @@ import { Driver } from './entities/driver.entity';
 
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
+import * as bcrypt from 'bcrypt';
+import { LocalAuthGuard } from 'src/auth/local.auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -24,9 +28,25 @@ export class UsersController {
     return this.usersService.getDrivers();
   }
 
-  @Get(':userId')
-  async getUser(@Param('userId', ParseUUIDPipe) userId: string): Promise<User> {
-    return this.usersService.getUserById(userId);
+  // @Get(':userId')
+  // async getUser(@Param('userId', ParseUUIDPipe) userId: string): Promise<User> {
+  //   return this.usersService.getUserById(userId);
+  // }
+
+  // @Get(':userName')
+  // async getUser(userName: string): Promise<User> {
+  //   console.log(userName);
+  //   const username = userName.toLowerCase();
+  //   const user = await this.usersService.getUser(username);
+  //   return user;
+  // }
+
+  @Get(':userName')
+  async getUser(@Param('userName') userName: string): Promise<User> {
+    console.log(userName);
+    // const username = userName.toLowerCase();
+    const user = await this.usersService.getUser(userName);
+    return user;
   }
 
   @Get()
@@ -36,9 +56,15 @@ export class UsersController {
 
   @Post()
   async createUser(@Body() createUserDto: CreateUserInputDto): Promise<User> {
-    return this.usersService.createUser(
-      createUserDto.email,
+    const saltOrRounds = 10;
+    const hashedPassword = await bcrypt.hash(
       createUserDto.password,
+      saltOrRounds,
+    );
+    return await this.usersService.createUser(
+      createUserDto.email,
+      createUserDto.userName,
+      hashedPassword,
       createUserDto.isActive,
       createUserDto.firstName,
       createUserDto.lastName,
@@ -56,6 +82,7 @@ export class UsersController {
   ): Promise<Driver> {
     return this.usersService.createDriver(
       createDriverDto.email,
+      createDriverDto.userName,
       createDriverDto.password,
       createDriverDto.isActive,
       createDriverDto.firstName,
@@ -79,5 +106,14 @@ export class UsersController {
     @Body() updateUserDto: UpdateUserInputDto,
   ): Promise<User> {
     return this.usersService.updateUser(userId, updateUserDto);
+  }
+
+  //Post / Login
+  @UseGuards(LocalAuthGuard)
+  @Post('/login')
+  async login(@Request() req) {
+    console.log(req.user);
+    // console.log(req.body);
+    return { User: req.user, msg: 'User logged in' };
   }
 }

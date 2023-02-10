@@ -14,6 +14,11 @@ export class UsersService {
     return this.usersRepository.findOne(userId);
   }
 
+  async getUser(username: string): Promise<User> {
+    console.log('getUser');
+    return this.usersRepository.findOne(username);
+  }
+
   async getUsers(): Promise<User[]> {
     return this.usersRepository.find({});
   }
@@ -24,6 +29,7 @@ export class UsersService {
 
   async createUser(
     email: string,
+    userName: string,
     password: string,
     isActive: boolean,
     firstName: string,
@@ -37,6 +43,7 @@ export class UsersService {
     return this.usersRepository.create({
       userId: uuidv4(),
       email,
+      userName,
       password,
       isActive,
       firstName,
@@ -51,6 +58,7 @@ export class UsersService {
 
   async createDriver(
     email: string,
+    userName: string,
     password: string,
     isActive: boolean,
     firstName: string,
@@ -69,6 +77,7 @@ export class UsersService {
     return this.usersRepository.createDriver({
       userId: uuidv4(),
       email,
+      userName,
       password,
       isActive,
       firstName,

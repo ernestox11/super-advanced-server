@@ -11,12 +11,15 @@ export class UsersRepository {
     @InjectModel(Driver.name) private readonly driverModel: Model<Driver>,
   ) {}
 
-  async findOne(userId: string): Promise<User> {
-    return this.userModel.findOne({ userId: userId });
+  async findOne(userName: string): Promise<User> {
+    // console.log('user.service.findOne');
+    const user = await this.userModel.findOne({ userName: userName });
+    console.log(user);
+    return user;
   }
 
   async find(userFilterQuery: FilterQuery<User>): Promise<User[]> {
-    return this.userModel.find(userFilterQuery);
+    return await this.userModel.find(userFilterQuery);
   }
 
   async findDrivers(): Promise<Driver[]> {
@@ -25,7 +28,7 @@ export class UsersRepository {
 
   async create(user: User): Promise<User> {
     const newUser = new this.userModel(user);
-    return newUser.save();
+    return await newUser.save();
   }
 
   async createDriver(driver: Driver): Promise<Driver> {

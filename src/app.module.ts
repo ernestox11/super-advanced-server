@@ -12,6 +12,7 @@ import { TravelLogsModule } from './main/travel-logs/travel-logs.module';
 import { VehiclesModule } from './main/vehicles/vehicles.module';
 import { VehicleModelsModule } from './main/vehicle-models/vehicle-models.module';
 import { LoadCapacitiesModule } from './main/load-capacities/load-capacities.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { LoadCapacitiesModule } from './main/load-capacities/load-capacities.mod
     VehiclesModule,
     VehicleModelsModule,
     LoadCapacitiesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

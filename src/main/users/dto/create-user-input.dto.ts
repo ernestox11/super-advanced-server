@@ -14,6 +14,10 @@ export class CreateUserInputDto {
 
   @IsString()
   @IsNotEmpty()
+  userName: string;
+
+  @IsString()
+  @IsNotEmpty()
   password: string;
 
   @IsBoolean()
