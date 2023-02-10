@@ -10,6 +10,9 @@ export class Order {
   clientId: string;
 
   @Prop({ type: String })
+  clientName: string;
+
+  @Prop({ type: String })
   branchOffice: string;
 
   @Prop({ type: String })
