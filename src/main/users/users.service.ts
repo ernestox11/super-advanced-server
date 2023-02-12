@@ -15,7 +15,7 @@ export class UsersService {
   }
 
   async getUser(username: string): Promise<User> {
-    console.log('getUser');
+    // console.log('getUser');
     return this.usersRepository.findOne(username);
   }
 

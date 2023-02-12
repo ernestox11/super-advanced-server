@@ -112,7 +112,7 @@ export class UsersController {
   @UseGuards(LocalAuthGuard)
   @Post('/login')
   async login(@Request() req) {
-    console.log(req.user);
+    // console.log(req.user);
     // console.log(req.body);
     return { User: req.user, msg: 'User logged in' };
   }

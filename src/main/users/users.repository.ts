@@ -14,7 +14,7 @@ export class UsersRepository {
   async findOne(userName: string): Promise<User> {
     // console.log('user.service.findOne');
     const user = await this.userModel.findOne({ userName: userName });
-    console.log(user);
+    // console.log(user);
     return user;
   }
 

@@ -8,20 +8,22 @@ export class AuthService {
   async validateUser(userName: string, password: string): Promise<any> {
     // console.log('Auth service');
     const user = await this.usersService.getUser(userName);
+    // console.log(user);
     let passwordValid = null;
-    if (password) {
+    if (user != null) {
       passwordValid = await bcrypt.compare(password, user.password);
+      if (!user) {
+        throw new NotAcceptableException('could not find the user');
+      }
+      if (user && passwordValid) {
+        return {
+          userId: user.userId,
+          userName: user.userName,
+          accessLevel: user.accessLevel,
+        };
+      }
     }
-    if (!user) {
-      throw new NotAcceptableException('could not find the user');
-    }
-    if (user && passwordValid) {
-      return {
-        userId: user.userId,
-        userName: user.userName,
-        accessLevel: user.accessLevel,
-      };
-    }
+
     return null;
   }
 }
