@@ -4,7 +4,7 @@ import { UpdateUserInputDto } from './dto/update-user-input.dto';
 import { User } from './entities/user.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { UsersRepository } from './users.repository';
-import { Driver } from './entities/driver.entity';
+// import { Driver } from './entities/driver.entity';
 
 @Injectable()
 export class UsersService {
@@ -23,40 +23,11 @@ export class UsersService {
     return this.usersRepository.find({});
   }
 
-  async getDrivers(): Promise<Driver[]> {
-    return this.usersRepository.findDrivers();
-  }
+  // async getDrivers(): Promise<Driver[]> {
+  //   return this.usersRepository.findDrivers();
+  // }
 
   async createUser(
-    email: string,
-    userName: string,
-    password: string,
-    isActive: boolean,
-    firstName: string,
-    lastName: string,
-    branchOffice: string,
-    accessLevel: string,
-    nationality: string,
-    idNumber: number,
-    phoneNumber: [number],
-  ): Promise<User> {
-    return this.usersRepository.create({
-      userId: uuidv4(),
-      email,
-      userName,
-      password,
-      isActive,
-      firstName,
-      lastName,
-      branchOffice,
-      accessLevel,
-      nationality,
-      idNumber,
-      phoneNumber,
-    });
-  }
-
-  async createDriver(
     email: string,
     userName: string,
     password: string,
@@ -73,8 +44,8 @@ export class UsersService {
     vehicleModel: string,
     vehicleVolume: number,
     vehicleWeight: number,
-  ): Promise<Driver> {
-    return this.usersRepository.createDriver({
+  ): Promise<User> {
+    return this.usersRepository.create({
       userId: uuidv4(),
       email,
       userName,
@@ -94,6 +65,45 @@ export class UsersService {
       vehicleWeight,
     });
   }
+
+  // async createDriver(
+  //   email: string,
+  //   userName: string,
+  //   password: string,
+  //   isActive: boolean,
+  //   firstName: string,
+  //   lastName: string,
+  //   branchOffice: string,
+  //   accessLevel: string,
+  //   nationality: string,
+  //   idNumber: number,
+  //   phoneNumber: [number],
+  //   driverLicenseStatus: string,
+  //   designatedVehicleId: string,
+  //   vehicleModel: string,
+  //   vehicleVolume: number,
+  //   vehicleWeight: number,
+  // ): Promise<Driver> {
+  //   return this.usersRepository.createDriver({
+  //     userId: uuidv4(),
+  //     email,
+  //     userName,
+  //     password,
+  //     isActive,
+  //     firstName,
+  //     lastName,
+  //     branchOffice,
+  //     accessLevel,
+  //     nationality,
+  //     idNumber,
+  //     phoneNumber,
+  //     driverLicenseStatus,
+  //     designatedVehicleId,
+  //     vehicleModel,
+  //     vehicleVolume,
+  //     vehicleWeight,
+  //   });
+  // }
 
   async updateUser(
     userId: string,

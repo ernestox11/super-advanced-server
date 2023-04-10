@@ -8,10 +8,7 @@ import { UsersService } from './users.service';
 @Module({
   imports: [
     MongooseModule.forFeature(
-      [
-        { name: User.name, schema: UserSchema },
-        { name: Driver.name, schema: DriverSchema },
-      ],
+      [{ name: User.name, schema: UserSchema }],
       // 'users',
     ),
   ],

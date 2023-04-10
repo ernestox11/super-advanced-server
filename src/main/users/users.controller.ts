@@ -9,10 +9,10 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { CreateDriverInputDto } from './dto/create-driver-input.dto';
+// import { CreateDriverInputDto } from './dto/create-driver-input.dto';
 import { CreateUserInputDto } from './dto/create-user-input.dto';
 import { UpdateUserInputDto } from './dto/update-user-input.dto';
-import { Driver } from './entities/driver.entity';
+// import { Driver } from './entities/driver.entity';
 
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
@@ -23,10 +23,10 @@ import { LocalAuthGuard } from 'src/auth/local.auth.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get('drivers')
-  async getDrivers(): Promise<Driver[]> {
-    return this.usersService.getDrivers();
-  }
+  // @Get('drivers')
+  // async getDrivers(): Promise<Driver[]> {
+  //   return this.usersService.getDrivers();
+  // }
 
   // @Get(':userId')
   // async getUser(@Param('userId', ParseUUIDPipe) userId: string): Promise<User> {
@@ -73,32 +73,37 @@ export class UsersController {
       createUserDto.nationality,
       createUserDto.idNumber,
       createUserDto.phoneNumber,
+      createUserDto.driverLicenseStatus,
+      createUserDto.designatedVehicleId,
+      createUserDto.vehicleModel,
+      createUserDto.vehicleVolume,
+      createUserDto.vehicleWeight,
     );
   }
 
-  @Post('drivers')
-  async createDriver(
-    @Body() createDriverDto: CreateDriverInputDto,
-  ): Promise<Driver> {
-    return this.usersService.createDriver(
-      createDriverDto.email,
-      createDriverDto.userName,
-      createDriverDto.password,
-      createDriverDto.isActive,
-      createDriverDto.firstName,
-      createDriverDto.lastName,
-      createDriverDto.branchOffice,
-      createDriverDto.accessLevel,
-      createDriverDto.nationality,
-      createDriverDto.idNumber,
-      createDriverDto.phoneNumber,
-      createDriverDto.driverLicenseStatus,
-      createDriverDto.designatedVehicleId,
-      createDriverDto.vehicleModel,
-      createDriverDto.vehicleVolume,
-      createDriverDto.vehicleWeight,
-    );
-  }
+  // @Post('drivers')
+  // async createDriver(
+  //   @Body() createDriverDto: CreateDriverInputDto,
+  // ): Promise<Driver> {
+  //   return this.usersService.createDriver(
+  //     createDriverDto.email,
+  //     createDriverDto.userName,
+  //     createDriverDto.password,
+  //     createDriverDto.isActive,
+  //     createDriverDto.firstName,
+  //     createDriverDto.lastName,
+  //     createDriverDto.branchOffice,
+  //     createDriverDto.accessLevel,
+  //     createDriverDto.nationality,
+  //     createDriverDto.idNumber,
+  //     createDriverDto.phoneNumber,
+  //     createDriverDto.driverLicenseStatus,
+  //     createDriverDto.designatedVehicleId,
+  //     createDriverDto.vehicleModel,
+  //     createDriverDto.vehicleVolume,
+  //     createDriverDto.vehicleWeight,
+  //   );
+  // }
 
   @Patch(':userId')
   async updateUser(
