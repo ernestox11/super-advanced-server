@@ -13,6 +13,7 @@ import { VehiclesModule } from './main/vehicles/vehicles.module';
 import { VehicleModelsModule } from './main/vehicle-models/vehicle-models.module';
 import { LoadCapacitiesModule } from './main/load-capacities/load-capacities.module';
 import { AuthModule } from './auth/auth.module';
+import { DistanceModule } from './main/distance/distance.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { AuthModule } from './auth/auth.module';
     VehicleModelsModule,
     LoadCapacitiesModule,
     AuthModule,
+    DistanceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
