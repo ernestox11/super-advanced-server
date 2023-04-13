@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["uuidv"]
+  "cSpell.words": ["uuidv"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
