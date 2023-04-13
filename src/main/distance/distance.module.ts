@@ -4,6 +4,6 @@ import { DistanceController } from './distance.controller';
 
 @Module({
   controllers: [DistanceController],
-  providers: [DistanceService]
+  providers: [DistanceService],
 })
 export class DistanceModule {}

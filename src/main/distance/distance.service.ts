@@ -29,64 +29,121 @@ import * as haversine from 'haversine';
 
 @Injectable()
 export class DistanceService {
-  findShortestPath(
-    coordinates: {
-      receptionPointID: string;
-      latitude: string;
-      longitude: string;
-    }[],
-  ) {
-    // Calculate the distance between each pair of points
-    const distances = coordinates.map((pointA, indexA) =>
-      coordinates.map((pointB, indexB) => {
-        if (indexA === indexB) return 0;
-        return haversine(
-          { latitude: pointA.latitude, longitude: pointA.longitude },
-          { latitude: pointB.latitude, longitude: pointB.longitude },
-          { unit: 'meter' },
+  //   findShortestPath(coordinates) {
+  //     const R = 6371e3; // Earth's radius in meters
+  //     let sortedCoordinates = [coordinates[0]];
+  //     let remainingCoordinates = coordinates.slice(1);
+
+  //     while (remainingCoordinates.length > 0) {
+  //       let minDistance = Infinity;
+  //       let minIndex = -1;
+  //       let lastCoordinate = sortedCoordinates[sortedCoordinates.length - 1];
+  //       for (let i = 0; i < remainingCoordinates.length; i++) {
+  //         let currentCoordinate = remainingCoordinates[i];
+  //         let lat1 = lastCoordinate.latitude * (Math.PI / 180);
+  //         let lat2 = currentCoordinate.latitude * (Math.PI / 180);
+  //         let deltaLat =
+  //           (currentCoordinate.latitude - lastCoordinate.latitude) *
+  //           (Math.PI / 180);
+  //         let deltaLon =
+  //           (currentCoordinate.longitude - lastCoordinate.longitude) *
+  //           (Math.PI / 180);
+
+  //         let a =
+  //           Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+  //           Math.cos(lat1) *
+  //             Math.cos(lat2) *
+  //             Math.sin(deltaLon / 2) *
+  //             Math.sin(deltaLon / 2);
+  //         let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  //         let distance = R * c;
+
+  //         if (distance < minDistance) {
+  //           minDistance = distance;
+  //           minIndex = i;
+  //         }
+  //       }
+  //       sortedCoordinates.push(remainingCoordinates.splice(minIndex, 1)[0]);
+  //       sortedCoordinates[sortedCoordinates.length - 2].distanceToNextPoint =
+  //         minDistance;
+  //     }
+  //     sortedCoordinates[sortedCoordinates.length - 1].distanceToNextPoint = 0;
+
+  //     return sortedCoordinates.map((coordinate) => ({
+  //       receptionPointID: coordinate.receptionPointID,
+  //       distanceToNextPoint: coordinate.distanceToNextPoint,
+  //     }));
+  //   }
+  findShortestPath(coordinates) {
+    // Calculate the distance between two points
+    function getDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371e3; // Earth's radius in meters
+      const φ1 = lat1 * (Math.PI / 180);
+      const φ2 = lat2 * (Math.PI / 180);
+      const Δφ = (lat2 - lat1) * (Math.PI / 180);
+      const Δλ = (lon2 - lon1) * (Math.PI / 180);
+
+      const a =
+        Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+        Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+      return R * c;
+    }
+
+    // Find the shortest path using the Nearest Neighbor algorithm
+    let shortestPath = [];
+    let currentPoint = coordinates[0];
+    let remainingPoints = coordinates.slice(1);
+
+    while (remainingPoints.length > 0) {
+      let nearestPoint = remainingPoints[0];
+      let nearestDistance = getDistance(
+        currentPoint.latitude,
+        currentPoint.longitude,
+        nearestPoint.latitude,
+        nearestPoint.longitude,
+      );
+
+      for (let i = 1; i < remainingPoints.length; i++) {
+        let point = remainingPoints[i];
+        let distance = getDistance(
+          currentPoint.latitude,
+          currentPoint.longitude,
+          point.latitude,
+          point.longitude,
         );
-      }),
-    );
 
-    // Use Dijkstra's algorithm to find the shortest path
-    const unvisited = new Set(coordinates.keys());
-    const previous = new Array(coordinates.length);
-    const distance = new Array(coordinates.length).fill(Infinity);
-    distance[0] = 0;
-
-    while (unvisited.size > 0) {
-      let current = -1;
-      for (const i of unvisited) {
-        if (current === -1 || distance[i] < distance[current]) {
-          current = i;
+        if (distance < nearestDistance) {
+          nearestPoint = point;
+          nearestDistance = distance;
         }
       }
-      unvisited.delete(current);
 
-      for (const [i, d] of distances[current].entries()) {
-        if (unvisited.has(i)) {
-          const alt = distance[current] + d;
-          if (alt < distance[i]) {
-            distance[i] = alt;
-            previous[i] = current;
-          }
-        }
-      }
+      shortestPath.push({
+        startingReceptionPointID: currentPoint.receptionPointID,
+        endingReceptionPointID: nearestPoint.receptionPointID,
+        distanceBetweenPoints: nearestDistance,
+      });
+
+      currentPoint = nearestPoint;
+      remainingPoints = remainingPoints.filter(
+        (point) => point !== nearestPoint,
+      );
     }
 
-    // Build the path
-    let current = 0;
-    const path = [current];
-    while (previous[current] != null) {
-      current = previous[current];
-      path.push(current);
-    }
+    // Add the last leg of the journey back to the starting point
+    shortestPath.push({
+      startingReceptionPointID: currentPoint.receptionPointID,
+      endingReceptionPointID: coordinates[0].receptionPointID,
+      distanceBetweenPoints: getDistance(
+        currentPoint.latitude,
+        currentPoint.longitude,
+        coordinates[0].latitude,
+        coordinates[0].longitude,
+      ),
+    });
 
-    // Return the sorted array of objects with the new property 'distanceToNextPoint'
-    return path.map((i, index) => ({
-      ...coordinates[i],
-      distanceToNextPoint:
-        index === path.length - 1 ? 0 : distances[i][path[index + 1]],
-    }));
+    return shortestPath;
   }
 }
