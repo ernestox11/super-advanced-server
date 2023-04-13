@@ -70,7 +70,7 @@ export class DistanceService {
   //     sortedCoordinates[sortedCoordinates.length - 1].distanceToNextPoint = 0;
 
   //     return sortedCoordinates.map((coordinate) => ({
-  //       receptionPointID: coordinate.receptionPointID,
+  //       receptionPointId: coordinate.receptionPointId,
   //       distanceToNextPoint: coordinate.distanceToNextPoint,
   //     }));
   //   }
@@ -121,8 +121,8 @@ export class DistanceService {
       }
 
       shortestPath.push({
-        startingReceptionPointID: currentPoint.receptionPointID,
-        endingReceptionPointID: nearestPoint.receptionPointID,
+        startingReceptionPointId: currentPoint.receptionPointId,
+        endingReceptionPointId: nearestPoint.receptionPointId,
         distanceBetweenPoints: nearestDistance,
       });
 
@@ -134,8 +134,8 @@ export class DistanceService {
 
     // Add the last leg of the journey back to the starting point
     shortestPath.push({
-      startingReceptionPointID: currentPoint.receptionPointID,
-      endingReceptionPointID: coordinates[0].receptionPointID,
+      startingReceptionPointId: currentPoint.receptionPointId,
+      endingReceptionPointId: coordinates[0].receptionPointId,
       distanceBetweenPoints: getDistance(
         currentPoint.latitude,
         currentPoint.longitude,

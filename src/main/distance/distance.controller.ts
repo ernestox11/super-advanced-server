@@ -10,7 +10,7 @@ export class DistanceController {
     @Body()
     body: {
       coordinates: {
-        receptionPointID: string;
+        receptionPointId: string;
         latitude: string;
         longitude: string;
       }[];
