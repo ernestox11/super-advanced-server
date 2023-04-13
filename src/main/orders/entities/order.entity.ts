@@ -19,6 +19,15 @@ export class Order {
   receptionPointId: string;
 
   @Prop({ type: String })
+  latitude: string;
+
+  @Prop({ type: String })
+  longitude: string;
+
+  @Prop({ type: String })
+  address: string;
+
+  @Prop({ type: String })
   orderType: string;
 
   @Prop({ type: [TaskSchema] })

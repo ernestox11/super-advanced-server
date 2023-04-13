@@ -26,6 +26,18 @@ export class CreateOrderDto extends PartialType(CreateTaskDto) {
 
   @IsString()
   @IsNotEmpty()
+  latitude: string;
+
+  @IsString()
+  @IsNotEmpty()
+  longitude: string;
+
+  @IsString()
+  @IsNotEmpty()
+  address: string;
+
+  @IsString()
+  @IsNotEmpty()
   orderType: string;
 
   @IsNotEmpty()
