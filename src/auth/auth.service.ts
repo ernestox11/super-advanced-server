@@ -18,7 +18,7 @@ export class AuthService {
       if (user && passwordValid) {
         return {
           userId: user.userId,
-          userName: user.userName,
+          userName: user.firstName + ' ' + user.lastName,
           accessLevel: user.accessLevel,
         };
       }
