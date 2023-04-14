@@ -7,10 +7,7 @@ export class DeliveryRoute {
   driverId: string;
 
   @Prop({ type: String })
-  vehicleId: string;
-
-  @Prop({ type: Number })
-  service: number;
+  service: string;
 
   @Prop({ type: String })
   status: string;

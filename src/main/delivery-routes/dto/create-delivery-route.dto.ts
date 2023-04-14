@@ -6,10 +6,7 @@ export class CreateDeliveryRouteDto {
   driverId: string;
 
   @IsString()
-  vehicleId: string;
-
-  @IsNumber()
-  service: number;
+  service: string;
 
   @IsString()
   status: string;

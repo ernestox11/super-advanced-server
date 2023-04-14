@@ -4,28 +4,25 @@ import { Location } from '../../../common/entities/location.entity';
 @Schema()
 export class DeliveryStep {
   @Prop({ type: String })
-  type: string;
+  originPointId: string;
 
   @Prop({ type: String })
-  locationId: string;
+  destinationPointId: string;
 
-  @Prop({ type: Location })
-  location: Location;
+  @Prop({ type: String })
+  destinationAddress: string;
 
   @Prop({ type: Number })
   arrivalDate?: number;
 
-  @Prop({ type: Number })
-  departureDate?: number;
-
   @Prop({ type: String })
-  taskId?: string;
-
-  @Prop({ type: String })
-  taskStatus?: string;
+  travelTime: string;
 
   @Prop({ type: Number })
-  deliveryTime?: number;
+  totalNumberOfPackages: number;
+
+  @Prop({ type: [] })
+  tasks: [];
 }
 
 export const DeliveryStepSchema = SchemaFactory.createForClass(DeliveryStep);
