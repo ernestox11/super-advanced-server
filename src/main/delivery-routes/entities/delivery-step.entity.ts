@@ -12,8 +12,11 @@ export class DeliveryStep {
   @Prop({ type: String })
   destinationAddress: string;
 
-  @Prop({ type: Number })
-  arrivalDate?: number;
+  @Prop({ type: String })
+  arrivalDate: string;
+
+  @Prop({ type: String })
+  status: string;
 
   @Prop({ type: String })
   travelTime: string;
